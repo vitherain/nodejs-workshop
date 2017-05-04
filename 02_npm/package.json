@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-workshop-02-npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "string-contains-string": "^1.0.0"
+  }
+}
