@@ -1,10 +1,10 @@
-const myApp = angular.module("MyApp", []);
+var myApp = angular.module("MyApp", []);
 
 myApp.controller("MyCtrl", ['$http', function ($http) {
 
-    let self = this;
+    var self = this;
   
-    loadUsers = () => {
+    loadUsers = function() {
         $http.get('/users').then(function(response) {
             self.people = response.data;
         });
@@ -13,12 +13,12 @@ myApp.controller("MyCtrl", ['$http', function ($http) {
   
     self.sendPerson = function(person) {
         if (person.id) {
-            $http.put(`/users/${person.id}`, person).then(() => {
+            $http.put(`/users/${person.id}`, person).then(function() {
                 loadUsers();
                 self.newPerson = null;
             });
         } else {
-            $http.post('/users', person).then(() => {
+            $http.post('/users', person).then(function() {
                 loadUsers();
                 self.newPerson = null;
             });
