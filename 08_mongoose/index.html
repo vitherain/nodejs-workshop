@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="person in vm.people">
-                        <td>{{ person.id }}</td>
+                        <td>{{ person._id }}</td>
                         <td>{{ person.firstName }}</td>
                         <td>{{ person.lastName }}</td>
                         <td>{{ person.userName }}</td>
@@ -42,7 +42,7 @@
             <input type="text" placeholder="Zadejte přezdívku osoby" class="form-control" ng-model="vm.newPerson.userName" />
             <br>
             
-            <button ng-click="vm.sendPerson(vm.newPerson)" class="btn btn-primary">{{ vm.newPerson.id ? "Aktualizovat" : "Přidat" }}</button>
+            <button ng-click="vm.sendPerson(vm.newPerson)" class="btn btn-primary">{{ vm.newPerson._id ? "Aktualizovat" : "Přidat" }}</button>
         </div>
 
         <script src="/angular/myApp.js"></script>
