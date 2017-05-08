@@ -26,7 +26,9 @@ myApp.controller("MyCtrl", ['$http', function ($http) {
     };
 
     self.editPerson = function(person) {
-        self.newPerson = Object.assign({}, person);
+        $http.get('/users/' + person._id).then(function(response) {
+            self.newPerson = response.data;
+        });
     };
 
     self.deletePerson = function(person) {

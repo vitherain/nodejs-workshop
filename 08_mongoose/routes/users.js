@@ -19,45 +19,53 @@ router.post('/', function(request, response) {
     });
 });
 
-router.get('/:userId(\\d+)', function(request, response, next) {
+router.get('/:userId', function(request, response, next) {
     let userId = request.params.userId;
     
     Users.findById(userId, function(err, user) {
         if (err) throw err;
 
-        response.json(user);
-    });
-});
-
-router.get('/:userName(\\D+)', function(request, response, next) {
-    let userName = request.params.userName;
-    
-    Users.findOne({ userName: userName }, function(err, user) {
-        if (err) throw err;
-
-        response.json(user);
+        if (user) {
+            response.json(user);
+        } else {
+            let err = new Error(`User with _id=${userId} was not found`);
+            err.status = 404;
+            next(err);
+        }
     });
 });
 
 router.put('/:userId', function(request, response, next) {
     let userId = request.params.userId;
 
-    Users.findByIdAndUpdate(userId, request.body, function(err) {
+    Users.findByIdAndUpdate(userId, request.body, function(err, updatedUser) {
         if (err) throw err;
 
-        response.status(200);
-        response.end();
+        if (updatedUser) {
+            response.status(200);
+            response.end();
+        } else {
+            let err = new Error(`User with _id=${userId} was not found`);
+            err.status = 404;
+            next(err);
+        }
     });
 });
 
 router.delete('/:userId', function(request, response, next) {
     let userId = request.params.userId;
     
-    Users.remove({ id: userId }, function(err) {
+    Users.findByIdAndRemove(userId, function(err, removedUser) {
         if (err) throw err;
 
-        response.status(200);
-        response.end();
+        if (removedUser) {
+            response.status(200);
+            response.end();
+        } else {
+            let err = new Error(`User with _id=${userId} was not found`);
+            err.status = 404;
+            next(err);
+        }
     });
 });
 
