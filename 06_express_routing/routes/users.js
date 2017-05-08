@@ -67,4 +67,21 @@ router.put('/:userId', function(request, response, next) {
     }
 });
 
+router.delete('/:userId', function(request, response, next) {
+    let userId = parseInt(request.params.userId, 10);
+    let userIndex = users.map((usr) => { 
+        return usr.id 
+    }).indexOf(userId);
+
+    if (userIndex > -1) {
+        users.splice(userIndex, 1);
+        response.status(200);
+        response.end();
+    } else {
+        let err = new Error(`User with id=${userId} does not exist`);
+        err.status = 404;
+        next(err);
+    }
+});
+
 module.exports = router;
