@@ -13,7 +13,7 @@ myApp.controller("MyCtrl", ['$http', function ($http) {
   
     self.sendPerson = function(person) {
         if (person.id) {
-            $http.put(`/users/${person.id}`, person).then(function() {
+            $http.put('/users/' + person.id, person).then(function() {
                 loadUsers();
                 self.newPerson = null;
             });
@@ -30,6 +30,6 @@ myApp.controller("MyCtrl", ['$http', function ($http) {
     };
 
     self.deletePerson = function(person) {
-        $http.delete(`/users/${person.id}`).then(loadUsers);
+        $http.delete('/users/' + person.id).then(loadUsers);
     };
 }]);

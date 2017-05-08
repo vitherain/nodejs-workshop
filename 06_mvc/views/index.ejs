@@ -1,0 +1,25 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<h1>My Express MVC App</h1>
+		Zpráva: <strong><%= message %></strong>
+        <img src="/assets/logo.png" />
+
+		<ul>
+			<% people.forEach(function(person) { %>
+				<li><%= person.firstName %> <%= person.lastName %> (<%= person.userName %>)</li>
+			<% }); %>
+		</ul>
+
+		<h3>Přidat osobu</h3>
+		<form method="POST" action="/">
+			Jméno: <input type="text" id="firstName" name="firstName" /><br />
+			Příjmení: <input type="text" id="lastName" name="lastName" /><br />
+			Přezdívka: <input type="text" id="userName" name="userName" /><br />
+			<input type="submit" value="Potvrdit" />
+		</form>
+
+		<a href="/about">Stránka About</a>
+	</body>
+</html>
