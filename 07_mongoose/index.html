@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+    <head>
+        <meta charset="utf-8">
+        <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+        <script data-require="angularjs@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    </head>
+    <body ng-controller="MyCtrl as vm">
+        <div class="container">
+            <h1>My Express Server App - Routing</h1>
+            <img src="/assets/logo.png" />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Jméno</th>
+                        <th>Příjmení</th>
+                        <th>Přezdívka</th>
+                        <th>Operace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="person in vm.people">
+                        <td>{{ person.id }}</td>
+                        <td>{{ person.firstName }}</td>
+                        <td>{{ person.lastName }}</td>
+                        <td>{{ person.userName }}</td>
+                        <td>
+                            <button type="button" ng-click="vm.editPerson(person)">Editovat</button>
+                            <button type="button" ng-click="vm.deletePerson(person)">Smazat</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <input type="text" placeholder="Zadejte jméno osoby" class="form-control" ng-model="vm.newPerson.firstName" />
+            <br>
+            
+            <input type="text" placeholder="Zadejte příjmení osoby" class="form-control" ng-model="vm.newPerson.lastName" />
+            <br>
+
+            <input type="text" placeholder="Zadejte přezdívku osoby" class="form-control" ng-model="vm.newPerson.userName" />
+            <br>
+            
+            <button ng-click="vm.sendPerson(vm.newPerson)" class="btn btn-primary">{{ vm.newPerson.id ? "Aktualizovat" : "Přidat" }}</button>
+        </div>
+
+        <script src="/angular/myApp.js"></script>
+    </body>
+</html>
