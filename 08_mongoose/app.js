@@ -19,7 +19,7 @@ app.use('/assets', express.static(__dirname + '/public'));
 app.use('/angular', express.static(__dirname + '/public/angular'));
 
 app.use(function(request, response, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
