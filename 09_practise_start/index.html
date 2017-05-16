@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+    <head>
+        <meta charset="utf-8">
+        <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+        <script data-require="angularjs@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    </head>
+    <body ng-controller="MyCtrl as vm">
+        <div class="container">
+            <h1>Cars Database App</h1>
+            <img src="/assets/logo.png" />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Značka</th>
+                        <th>Model</th>
+                        <th>Rok výroby</th>
+                        <th>Operace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="car in vm.cars">
+                        <td>{{ car._id }}</td>
+                        <td>{{ car.brand }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.year }}</td>
+                        <td>
+                            <button type="button" ng-click="vm.editCar(car)">Editovat</button>
+                            <button type="button" ng-click="vm.deleteCar(car)">Smazat</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <input type="text" placeholder="Zadejte značku auta" class="form-control" ng-model="vm.newCar.brand" />
+            <br>
+            
+            <input type="text" placeholder="Zadejte model auta" class="form-control" ng-model="vm.newCar.model" />
+            <br>
+
+            <input type="number" placeholder="Zadejte rok výroby auta" class="form-control" ng-model="vm.newCar.year" />
+            <br>
+            
+            <button ng-click="vm.sendCar(vm.newCar)" class="btn btn-primary">{{ vm.newCar._id ? "Aktualizovat" : "Přidat" }}</button>
+        </div>
+
+        <script src="/angular/myApp.js"></script>
+    </body>
+</html>
