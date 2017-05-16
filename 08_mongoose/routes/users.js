@@ -28,9 +28,9 @@ router.get('/:userId', function(request, response, next) {
         if (user) {
             response.json(user);
         } else {
-            let err = new Error(`User with _id=${userId} was not found`);
-            err.status = 404;
-            next(err);
+            let error = new Error(`User with _id=${userId} was not found`);
+            error.status = 404;
+            next(error);
         }
     });
 });
@@ -45,9 +45,9 @@ router.put('/:userId', function(request, response, next) {
             response.status(200);
             response.end();
         } else {
-            let err = new Error(`User with _id=${userId} was not found`);
-            err.status = 404;
-            next(err);
+            let error = new Error(`User with _id=${userId} was not found`);
+            error.status = 404;
+            next(error);
         }
     });
 });
@@ -62,9 +62,9 @@ router.delete('/:userId', function(request, response, next) {
             response.status(200);
             response.end();
         } else {
-            let err = new Error(`User with _id=${userId} was not found`);
-            err.status = 404;
-            next(err);
+            let error = new Error(`User with _id=${userId} was not found`);
+            error.status = 404;
+            next(error);
         }
     });
 });
